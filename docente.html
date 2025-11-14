@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vista docente · TAG-Porsche TTE PO1 XR Engine Lab</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <meta name="theme-color" content="#020617" />
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/img/favicon-16.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32.png" />
+  
+</head>
+<body>
+  <header class="top-bar">
+  <div class="brand">
+    <span class="brand-mark">🏁</span>
+    <span class="brand-text">TAG-Porsche TTE PO1 XR Lab</span>
+  </div>
+  <nav class="main-nav">
+    <a href="index.html" class="nav-btn">🏠 Inicio</a>
+    <a href="viewer3D/tte-po1-3d.html" class="nav-btn accent">👁️ 3D</a>
+    <a href="viewerAR/tte-po1-ar.html" class="nav-btn accent">📱 AR</a>
+    <a href="viewerVR/tte-po1-vr.html" class="nav-btn accent">🥽 VR</a>
+  </nav>
+  <div class="accessibility-controls">
+    <button class="ctrl-btn" data-action="toggle-tts" title="Narrador">🗣️</button>
+    <button class="ctrl-btn" data-action="toggle-theme" title="Modo claro/oscuro">🌓</button>
+    <button class="ctrl-btn" data-action="font-inc" title="Aumentar tamaño de letra">A+</button>
+    <button class="ctrl-btn" data-action="font-dec" title="Disminuir tamaño de letra">A−</button>
+    <button class="ctrl-btn" data-action="toggle-lang" title="Cambiar idioma ES/EN">🌐</button>
+    <button class="ctrl-btn" data-action="focus-kpsi" title="Panel de datos">🧠</button>
+    <button class="ctrl-btn" data-action="focus-search" title="Buscar en la página">🔍</button>
+  </div>
+</header>
+  <main id="main-content" class="layout">
+
+    <section class="card">
+      <h1>🧑‍🏫 Vista docente · TTE PO1</h1>
+      <p>
+        Esta vista está pensada para el profesorado. Incluye sugerencias de implementación, una mini rúbrica
+        y una secuencia de clases basada en el uso XR del motor TAG-Porsche TTE PO1.
+      </p>
+      <p><strong>Contraseña demo:</strong> <code>neotech</code> (cámbiala cuando lleves esto a producción).</p>
+      <form id="docenteForm">
+        <label>Contraseña:<br><input type="password" name="clave" required></label>
+        <button type="submit" class="cta-btn small">🔓 Acceder</button>
+      </form>
+      <p id="docenteMsg" class="note"></p>
+    </section>
+
+    <section id="docentePanel" class="card hidden">
+      <h2>🧩 Secuencia propuesta (3 sesiones)</h2>
+      <ol class="edu-list">
+        <li><strong>Sesión 1:</strong> Activar conocimientos previos, revisar ficha técnica del TTE PO1 y completar KPSI.</li>
+        <li><strong>Sesión 2:</strong> Trabajo con visor 3D/AR/VR, registro de datos en CSV y construcción de gráficos.</li>
+        <li><strong>Sesión 3:</strong> Discusión de resultados, ticket de salida y reflexión metacognitiva.</li>
+      </ol>
+
+      <h2>📏 Rúbrica breve para informe técnico</h2>
+      <ul class="spec-list">
+        <li><strong>Precisión técnica (0–3):</strong> Uso correcto de conceptos como potencia, torque, presión de turbo.</li>
+        <li><strong>Análisis de datos (0–3):</strong> Lectura de gráficos, comparación F1 vs calle y justificación.</li>
+        <li><strong>Comunicación (0–2):</strong> Claridad del texto, estructura del informe y uso de vocabulario adecuado.</li>
+        <li><strong>Reflexión (0–2):</strong> Capacidad de identificar límites, ventajas y riesgos de estas tecnologías.</li>
+      </ul>
+    </section>
+
+  </main>
+  <footer class="site-footer">
+  <p>Neotech EduLab SpA — Educación Inmersiva &amp; I+D 🚀</p>
+  <p>Proyecto: TAG-Porsche TTE PO1 XR Engine Lab · Motor de Fórmula 1 para uso educativo.</p>
+  <p>Contacto: Francisco Pinto &amp; Belén Acuña · neotechedulab@gmail.com</p>
+</footer>
+  <script src="js/main.js"></script>
+  <script>
+    (function() {
+      const form = document.getElementById('docenteForm');
+      const panel = document.getElementById('docentePanel');
+      const msg = document.getElementById('docenteMsg');
+      if (!form) return;
+      form.addEventListener('submit', function(ev) {
+        ev.preventDefault();
+        const clave = (this.clave.value || '').trim();
+        if (clave === 'neotech') {
+          panel.classList.remove('hidden');
+          msg.textContent = 'Acceso concedido. Recuerda cambiar la clave en producción.';
+        } else {
+          msg.textContent = 'Contraseña incorrecta (usa "neotech" solo en esta demo).';
+        }
+      });
+    })();
+  </script>
+</body>
+</html>

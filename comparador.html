@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Comparador F1 vs calle · TAG-Porsche TTE PO1 XR Engine Lab</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <meta name="theme-color" content="#020617" />
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/img/favicon-16.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32.png" />
+  
+</head>
+<body>
+  <header class="top-bar">
+  <div class="brand">
+    <span class="brand-mark">🏁</span>
+    <span class="brand-text">TAG-Porsche TTE PO1 XR Lab</span>
+  </div>
+  <nav class="main-nav">
+    <a href="index.html" class="nav-btn">🏠 Inicio</a>
+    <a href="viewer3D/tte-po1-3d.html" class="nav-btn accent">👁️ 3D</a>
+    <a href="viewerAR/tte-po1-ar.html" class="nav-btn accent">📱 AR</a>
+    <a href="viewerVR/tte-po1-vr.html" class="nav-btn accent">🥽 VR</a>
+  </nav>
+  <div class="accessibility-controls">
+    <button class="ctrl-btn" data-action="toggle-tts" title="Narrador">🗣️</button>
+    <button class="ctrl-btn" data-action="toggle-theme" title="Modo claro/oscuro">🌓</button>
+    <button class="ctrl-btn" data-action="font-inc" title="Aumentar tamaño de letra">A+</button>
+    <button class="ctrl-btn" data-action="font-dec" title="Disminuir tamaño de letra">A−</button>
+    <button class="ctrl-btn" data-action="toggle-lang" title="Cambiar idioma ES/EN">🌐</button>
+    <button class="ctrl-btn" data-action="focus-kpsi" title="Panel de datos">🧠</button>
+    <button class="ctrl-btn" data-action="focus-search" title="Buscar en la página">🔍</button>
+  </div>
+</header>
+  <main id="main-content" class="layout">
+
+    <section class="card">
+      <h1>⚖️ Comparador: TTE PO1 vs motor de calle</h1>
+      <p>
+        Usa este comparador para conversar con el curso sobre diferencias entre un motor de Fórmula 1 de los 80
+        y un motor turbo moderno de calle.
+      </p>
+      <label for="enfoqueRange">Ajusta el enfoque:</label>
+      <input id="enfoqueRange" type="range" min="0" max="100" value="50" />
+      <p id="enfoqueLabel" class="note">Enfoque equilibrado: F1 vs calle.</p>
+    </section>
+
+    <section class="card">
+      <div class="grid two-cols">
+        <article id="colF1" class="card">
+          <h2>🏎️ TAG-Porsche TTE PO1</h2>
+          <ul class="spec-list">
+            <li><strong>Uso:</strong> Fórmula 1, era turbo 1,5 L.</li>
+            <li><strong>Potencia:</strong> 800–1000 hp según modo.</li>
+            <li><strong>Régimen:</strong> Máx. ~11.500–12.000 rpm.</li>
+            <li><strong>Presión de turbo:</strong> Muy alta, varios bar por encima de la atmósfera.</li>
+            <li><strong>Objetivo:</strong> Rendimiento extremo a corto plazo.</li>
+          </ul>
+        </article>
+        <article id="colCalle" class="card">
+          <h2>🚗 Motor turbo de calle (ej. 2.0L)</h2>
+          <ul class="spec-list">
+            <li><strong>Uso:</strong> Vehículo de calle y autopista.</li>
+            <li><strong>Potencia:</strong> 200–300 hp aprox.</li>
+            <li><strong>Régimen:</strong> Máx. ~6.000–7.000 rpm.</li>
+            <li><strong>Presión de turbo:</strong> Moderada, pensada para durabilidad.</li>
+            <li><strong>Objetivo:</strong> Equilibrio entre rendimiento, consumo y vida útil.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+  </main>
+  <footer class="site-footer">
+  <p>Neotech EduLab SpA — Educación Inmersiva &amp; I+D 🚀</p>
+  <p>Proyecto: TAG-Porsche TTE PO1 XR Engine Lab · Motor de Fórmula 1 para uso educativo.</p>
+  <p>Contacto: Francisco Pinto &amp; Belén Acuña · neotechedulab@gmail.com</p>
+</footer>
+  <script src="js/main.js"></script>
+  <script>
+    (function() {
+      const range = document.getElementById('enfoqueRange');
+      const label = document.getElementById('enfoqueLabel');
+      const colF1 = document.getElementById('colF1');
+      const colCalle = document.getElementById('colCalle');
+      if (!range) return;
+      function update() {
+        const v = parseInt(range.value, 10) || 50;
+        if (v < 40) {
+          label.textContent = 'Más enfoque en motor de calle.';
+          colCalle.style.borderColor = 'rgba(56, 189, 248, 0.9)';
+          colF1.style.borderColor = 'rgba(148, 163, 184, 0.35)';
+        } else if (v > 60) {
+          label.textContent = 'Más enfoque en motor de Fórmula 1.';
+          colF1.style.borderColor = 'rgba(56, 189, 248, 0.9)';
+          colCalle.style.borderColor = 'rgba(148, 163, 184, 0.35)';
+        } else {
+          label.textContent = 'Enfoque equilibrado: F1 vs calle.';
+          colF1.style.borderColor = 'rgba(148, 163, 184, 0.35)';
+          colCalle.style.borderColor = 'rgba(148, 163, 184, 0.35)';
+        }
+      }
+      range.addEventListener('input', update);
+      update();
+    })();
+  </script>
+</body>
+</html>

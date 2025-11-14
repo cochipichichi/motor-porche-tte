@@ -1,0 +1,4 @@
+etiqueta;tipo_motor;cilindrada_L;configuracion;potencia_hp;modo;rpm_max;presion_turbo_bar;comentario
+TTE_PO1_carrera;V6 biturbo;1.5;V6 a 80° (aprox.);800;carrera;11500;3.5;Configuración típica de gran premio en era turbo 1.5 L
+TTE_PO1_quali;V6 biturbo;1.5;V6 a 80° (aprox.);1000;clasificación;12000;4.0;Mapeos agresivos de turbo para una o pocas vueltas
+Motor_calle_2_0T;4L turbo;2.0;4 cilindros en línea;250;uso diario;6500;1.2;Ejemplo genérico de motor turbo de calle

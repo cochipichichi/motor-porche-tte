@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TAG-Porsche TTE PO1 XR Engine Lab · Neotech EduLab</title>
+  <meta name="description" content="Laboratorio XR del motor TAG-Porsche TTE PO1: ficha técnica, historia, logros en Fórmula 1 y visor 3D/AR/VR para clases de Tecnología y Física.">
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <meta name="theme-color" content="#020617" />
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/img/favicon-16.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32.png" />
+</head>
+<body>
+  
+<header class="top-bar">
+  <div class="brand">
+    <span class="brand-mark">🏁</span>
+    <span class="brand-text">TAG-Porsche TTE PO1 XR Lab</span>
+  </div>
+  <nav class="main-nav">
+    <a href="index.html" class="nav-btn">🏠 Inicio</a>
+    <a href="viewer3D/tte-po1-3d.html" class="nav-btn accent">👁️ 3D</a>
+    <a href="viewerAR/tte-po1-ar.html" class="nav-btn accent">📱 AR</a>
+    <a href="viewerVR/tte-po1-vr.html" class="nav-btn accent">🥽 VR</a>
+  </nav>
+  <div class="accessibility-controls">
+    <button class="ctrl-btn" data-action="toggle-tts" title="Narrador">🗣️</button>
+    <button class="ctrl-btn" data-action="toggle-theme" title="Modo claro/oscuro">🌓</button>
+    <button class="ctrl-btn" data-action="font-inc" title="Aumentar tamaño de letra">A+</button>
+    <button class="ctrl-btn" data-action="font-dec" title="Disminuir tamaño de letra">A−</button>
+    <button class="ctrl-btn" data-action="toggle-lang" title="Cambiar idioma ES/EN">🌐</button>
+    <button class="ctrl-btn" data-action="focus-kpsi" title="Panel de datos">🧠</button>
+    <button class="ctrl-btn" data-action="focus-search" title="Buscar en la página">🔍</button>
+  </div>
+</header>
+
+  <main id="main-content" class="layout">
+    <section class="hero">
+      <div class="hero-text">
+        <h1><span data-lang="es">TAG-Porsche TTE PO1 XR Engine Lab</span><span data-lang="en" class="hidden">TAG-Porsche TTE PO1 XR Engine Lab</span></h1>
+        <p class="lead" data-lang="es">
+          Explora en detalle el <strong>motor TAG-Porsche TTE PO1</strong>, V6 biturbo de 1,5 L que impulsó a los
+          McLaren de Fórmula 1 en los años 80, campeón del mundo junto a pilotos como Niki Lauda y Alain Prost.
+        </p>
+        <p class="lead hidden" data-lang="en">
+          Explore the <strong>TAG-Porsche TTE PO1</strong>, a 1.5 L twin-turbo V6 that powered McLaren Formula 1 cars
+          in the 1980s, winning World Championships with drivers like Niki Lauda and Alain Prost.
+        </p>
+        <div class="cta-row">
+          <a href="viewer3D/tte-po1-3d.html" class="cta-btn primary">👁️ Ver motor en 3D</a>
+          <a href="viewerAR/tte-po1-ar.html" class="cta-btn">📱 Modo AR</a>
+          <a href="viewerVR/tte-po1-vr.html" class="cta-btn">🥽 Modo VR</a>
+        </div>
+      </div>
+      <figure class="hero-image">
+        <img src="assets/img/tte_po1_photo.png" alt="Representación gráfica del motor TAG-Porsche TTE PO1 V6 biturbo" />
+        <figcaption>Render del motor TAG-Porsche TTE PO1 utilizado en este laboratorio XR.</figcaption>
+      </figure>
+    </section>
+
+    <section class="grid two-cols">
+      <article class="card">
+        <h2>📊 Ficha técnica esencial</h2>
+        <ul class="spec-list">
+          <li><strong>Fabricante:</strong> Porsche para McLaren, financiado por TAG.</li>
+          <li><strong>Configuración:</strong> V6 biturbo, 1,5 L (aprox. 1496 cc).</li>
+          <li><strong>Alimentación:</strong> Inyección electrónica y doble turbocompresor.</li>
+          <li><strong>Potencia:</strong> ~750–850 hp en modo carrera; hasta ~1.000 hp en clasificación.</li>
+          <li><strong>Aplicación:</strong> McLaren MP4/2 y MP4/3 en Fórmula 1.</li>
+          <li><strong>Era:</strong> Temporadas 1983–1987 de Fórmula 1 con motor turbo.</li>
+        </ul>
+      </article>
+
+      <article class="card">
+        <h2>🏆 Logros en Fórmula 1</h2>
+        <p>
+          El TTE PO1 es uno de los motores turbo más icónicos de la historia de la F1. Equipando a los McLaren
+          MP4/2 y MP4/3, contribuyó a múltiples campeonatos de pilotos y constructores a mediados de los años 80.
+        </p>
+        <ul class="spec-list">
+          <li>Debut competitivo a mediados de los 80 con McLaren.</li>
+          <li>Títulos de pilotos con Niki Lauda y Alain Prost.</li>
+          <li>Dominio en varias temporadas de la era turbo de 1,5 L.</li>
+          <li>Hoy es pieza de colección en museos y proyectos especiales.</li>
+        </ul>
+      </article>
+    </section>
+
+    <section id="kpsi-panel" class="card kpsi">
+      <h2>🧠 KPSI · ¿Qué sé sobre el TTE PO1?</h2>
+      <p>Marca con ✔️ lo que sientas que dominas antes y después de trabajar con este laboratorio XR.</p>
+      <table>
+        <thead>
+          <tr>
+            <th>Ítem</th>
+            <th>Antes</th>
+            <th>Después</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Diferenciar potencia máxima en clasificación vs. carrera.</td>
+            <td>⬜️</td>
+            <td>⬜️</td>
+          </tr>
+          <tr>
+            <td>Explicar el rol de los turbocompresores en un motor de 1,5 L.</td>
+            <td>⬜️</td>
+            <td>⬜️</td>
+          </tr>
+          <tr>
+            <td>Relacionar torque, potencia y régimen de giro (rpm).</td>
+            <td>⬜️</td>
+            <td>⬜️</td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="note">Usa esta tabla en papel o digital (CSV) para medir progreso conceptual de tus estudiantes.</p>
+    </section>
+
+    <section class="card">
+      <h2>🎓 Ideas de uso en clase</h2>
+      <ol class="edu-list">
+        <li>Extraer datos del motor (desplazamiento, potencia, rpm) y compararlos con un motor de calle.</li>
+        <li>Modelar en gráficos cómo cambia la potencia con la presión del turbo o las rpm.</li>
+        <li>Usar el visor 3D para identificar elementos: compresores, colectores, bancadas, etc.</li>
+        <li>Diseñar un informe técnico donde el estudiantado proponga mejoras o compare tecnologías.</li>
+      </ol>
+    </section>
+
+    <section id="glosario" class="card">
+      <h2>📚 Glosario rápido</h2>
+      <p>Algunos términos clave para trabajar con motores turbo de Fórmula 1:</p>
+      <ul class="spec-list">
+        <li><strong>Boost:</strong> Aumento de presión generado por el turbocompresor respecto a la presión atmosférica.</li>
+        <li><strong>Mapa de motor:</strong> Conjunto de parámetros (inyección, avance, presión de turbo) ajustados para un objetivo concreto.</li>
+        <li><strong>Detonación:</strong> Combustión no controlada que puede dañar pistones y culata, frecuente cuando se abusa del turbo.</li>
+        <li><strong>AFR:</strong> Relación aire/combustible; mezclas muy ricas o muy pobres afectan potencia y seguridad del motor.</li>
+        <li><strong>Curva de potencia:</strong> Gráfico que muestra cómo cambia la potencia en función de las rpm.</li>
+      </ul>
+    </section>
+
+
+    <section class="card">
+      <h2>✅ Flujo de trabajo sugerido</h2>
+      <div class="workflow">
+        <button class="chip">👁️ Explorar motor en 3D</button>
+        <button class="chip">📱 Probar en AR</button>
+        <button class="chip">🥽 Recorrer en VR</button>
+        <button class="chip">✅ Registrar datos en CSV</button>
+        <button class="chip">🧪 Aplicar quiz</button>
+        <button class="chip">🎟️ Ticket de salida</button>
+      </div>
+      <p>
+        La idea es pasar de la observación libre a la explicación guiada, práctica de análisis y cierre metacognitivo.
+      </p>
+    
+    <section id="quiz" class="card">
+      <h2>🧪 Quiz rápido</h2>
+      <p>Usa estas preguntas como base para un formulario en línea o guía impresa:</p>
+      <ol>
+        <li>¿Por qué un motor de 1,5 L puede alcanzar más de 800 hp en la era turbo de F1?</li>
+        <li>Explica la diferencia entre el modo carrera y el modo clasificación en términos de potencia y riesgo mecánico.</li>
+        <li>Compara el TTE PO1 con un motor turbo de calle: ¿en qué se parecen y en qué se diferencian?</li>
+      </ol>
+    </section>
+
+
+    <section id="quiz-envio" class="card">
+      <h2>📩 Enviar resultados del quiz por correo</h2>
+      <p>
+        Este formulario abre el cliente de correo del dispositivo y prepara un mensaje con las respuestas.
+        Úsalo como demo rápida (en producción puedes reemplazar el correo o usar un backend propio).
+      </p>
+      <form action="mailto:neotechedulab@gmail.com?subject=Quiz%20TTE%20PO1" method="post" enctype="text/plain">
+        <label>Nombre del estudiante:<br><input type="text" name="nombre" required></label><br><br>
+        <label>Respuesta 1:<br><textarea name="respuesta1" rows="2"></textarea></label><br><br>
+        <label>Respuesta 2:<br><textarea name="respuesta2" rows="2"></textarea></label><br><br>
+        <label>Respuesta 3:<br><textarea name="respuesta3" rows="2"></textarea></label><br><br>
+        <button type="submit" class="cta-btn small">🧪 Enviar respuestas</button>
+      </form>
+      <p class="note">En algunos navegadores puede solicitar confirmación antes de abrir el correo.</p>
+    </section>
+
+
+    <section id="ticket-salida" class="card">
+      <h2>🎟️ Ticket de salida</h2>
+      <p>Pide al estudiantado que responda individualmente antes de salir de la clase:</p>
+      <ul>
+        <li>Escribe una frase que resuma qué aprendiste hoy sobre el TTE PO1.</li>
+        <li>Menciona un dato numérico (hp, rpm, presión de turbo) que recuerdes y por qué es importante.</li>
+        <li>¿Qué duda te quedó que te gustaría investigar en la próxima sesión?</li>
+      </ul>
+    </section>
+
+    <section id="csv" class="card">
+      <h2>📊 Plantilla CSV para análisis de datos</h2>
+      <p>
+        Esta plantilla en formato <strong>CSV</strong> permite comparar el motor TAG-Porsche TTE PO1 con un motor turbo de calle.
+        Puedes abrirla en <em>Google Sheets</em> o Excel, completar más columnas y construir gráficos.
+      </p>
+      <p>
+        Archivo sugerido: <code>tte_po1_comparativa.csv</code> (separador ;). Incluye columnas de potencia, rpm y presión de turbo
+        para distintos escenarios (carrera, clasificación, uso diario).
+      </p>
+      <a href="assets/data/tte_po1_comparativa.csv" download class="cta-btn small">✅ Descargar plantilla CSV</a>
+    </section>
+
+
+    </section>
+
+    <section class="card">
+      <h2>🧭 Otras vistas del laboratorio</h2>
+      <p>Accesos directos a vistas complementarias del motor TTE PO1:</p>
+      <div class="cta-row">
+        <a href="dashboard.html" class="cta-btn small">📊 Dashboard de datos</a>
+        <a href="comparador.html" class="cta-btn small">⚖️ Comparador F1 vs calle</a>
+        <a href="docente.html" class="cta-btn small">🧑‍🏫 Vista docente</a>
+      </div>
+    </section>
+
+
+    <section class="card search-block">
+      <h2>🔍 Buscador dentro de la página</h2>
+      <label for="searchInput">Escribe una palabra clave (ej. <em>turbo</em>, <em>potencia</em>, <em>V6</em>):</label>
+      <input id="searchInput" type="text" placeholder="Buscar en el contenido…" />
+      <button id="searchBtn" class="cta-btn small">Buscar</button>
+      <p id="searchStatus" class="search-status" aria-live="polite"></p>
+    </section>
+  </main>
+  
+<footer class="site-footer">
+  <p>Neotech EduLab SpA — Educación Inmersiva &amp; I+D 🚀</p>
+  <p>Proyecto: TAG-Porsche TTE PO1 XR Engine Lab · Motor de Fórmula 1 para uso educativo.</p>
+  <p>Contacto: Francisco Pinto &amp; Belén Acuña · neotechedulab@gmail.com</p>
+</footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

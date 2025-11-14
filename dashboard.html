@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard de datos · TAG-Porsche TTE PO1 XR Engine Lab</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <meta name="theme-color" content="#020617" />
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/img/favicon-16.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32.png" />
+  
+</head>
+<body>
+  <header class="top-bar">
+  <div class="brand">
+    <span class="brand-mark">🏁</span>
+    <span class="brand-text">TAG-Porsche TTE PO1 XR Lab</span>
+  </div>
+  <nav class="main-nav">
+    <a href="index.html" class="nav-btn">🏠 Inicio</a>
+    <a href="viewer3D/tte-po1-3d.html" class="nav-btn accent">👁️ 3D</a>
+    <a href="viewerAR/tte-po1-ar.html" class="nav-btn accent">📱 AR</a>
+    <a href="viewerVR/tte-po1-vr.html" class="nav-btn accent">🥽 VR</a>
+  </nav>
+  <div class="accessibility-controls">
+    <button class="ctrl-btn" data-action="toggle-tts" title="Narrador">🗣️</button>
+    <button class="ctrl-btn" data-action="toggle-theme" title="Modo claro/oscuro">🌓</button>
+    <button class="ctrl-btn" data-action="font-inc" title="Aumentar tamaño de letra">A+</button>
+    <button class="ctrl-btn" data-action="font-dec" title="Disminuir tamaño de letra">A−</button>
+    <button class="ctrl-btn" data-action="toggle-lang" title="Cambiar idioma ES/EN">🌐</button>
+    <button class="ctrl-btn" data-action="focus-kpsi" title="Panel de datos">🧠</button>
+    <button class="ctrl-btn" data-action="focus-search" title="Buscar en la página">🔍</button>
+  </div>
+</header>
+  <main id="main-content" class="layout">
+
+    <section class="card">
+      <h1>📊 Dashboard de datos · TTE PO1</h1>
+      <p>
+        Esta página describe cómo usar la plantilla <code>tte_po1_comparativa.csv</code> para construir gráficos
+        en Google Sheets o en otra herramienta de análisis de datos.
+      </p>
+      <ol class="edu-list">
+        <li>Abre el archivo <strong>CSV</strong> en Google Sheets.</li>
+        <li>Crea un gráfico de columnas comparando potencia para TTE PO1 en carrera, clasificación y motor de calle.</li>
+        <li>Añade un segundo gráfico que compare la presión de turbo y las rpm máximas.</li>
+        <li>Discute con el curso por qué un motor pequeño puede lograr tanta potencia y qué riesgos implica.</li>
+      </ol>
+    </section>
+
+    <section class="card">
+      <h2>Ejemplo de estructura de datos</h2>
+      <pre><code>etiqueta;tipo_motor;cilindrada_L;configuracion;potencia_hp;modo;rpm_max;presion_turbo_bar;comentario
+TTE_PO1_carrera;V6 biturbo;1.5;V6 a 80° (aprox.);800;carrera;11500;3.5;Configuración típica de gran premio
+TTE_PO1_quali;V6 biturbo;1.5;V6 a 80° (aprox.);1000;clasificación;12000;4.0;Modo clasificación muy exigente
+Motor_calle_2_0T;4L turbo;2.0;4L en línea;250;uso diario;6500;1.2;Ejemplo genérico de calle</code></pre>
+      <p class="note">
+        Puedes extender esta tabla con más filas (otros motores, temporadas o configuraciones de turbo).
+      </p>
+    </section>
+
+  </main>
+  <footer class="site-footer">
+  <p>Neotech EduLab SpA — Educación Inmersiva &amp; I+D 🚀</p>
+  <p>Proyecto: TAG-Porsche TTE PO1 XR Engine Lab · Motor de Fórmula 1 para uso educativo.</p>
+  <p>Contacto: Francisco Pinto &amp; Belén Acuña · neotechedulab@gmail.com</p>
+</footer>
+  <script src="js/main.js"></script>
+</body>
+</html>

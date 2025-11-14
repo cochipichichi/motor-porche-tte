@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Modo AR · Motor TAG-Porsche TTE PO1</title>
+  <link rel="stylesheet" href="../css/styles.css" />
+  <link rel="manifest" href="../manifest.webmanifest" />
+  <meta name="theme-color" content="#020617" />
+  <link rel="icon" type="image/png" sizes="16x16" href="../assets/img/favicon-16.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../assets/img/favicon-32.png" />
+  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+</head>
+<body>
+  
+<header class="top-bar">
+  <div class="brand">
+    <span class="brand-mark">🏁</span>
+    <span class="brand-text">TAG-Porsche TTE PO1 XR Lab</span>
+  </div>
+  <nav class="main-nav">
+    <a href="../index.html" class="nav-btn">🏠 Inicio</a>
+    <a href="../viewer3D/tte-po1-3d.html" class="nav-btn accent">👁️ 3D</a>
+    <a href="../viewerAR/tte-po1-ar.html" class="nav-btn accent">📱 AR</a>
+    <a href="../viewerVR/tte-po1-vr.html" class="nav-btn accent">🥽 VR</a>
+  </nav>
+  <div class="accessibility-controls">
+    <button class="ctrl-btn" data-action="toggle-tts" title="Narrador">🗣️</button>
+    <button class="ctrl-btn" data-action="toggle-theme" title="Modo claro/oscuro">🌓</button>
+    <button class="ctrl-btn" data-action="font-inc" title="Aumentar tamaño de letra">A+</button>
+    <button class="ctrl-btn" data-action="font-dec" title="Disminuir tamaño de letra">A−</button>
+    <button class="ctrl-btn" data-action="toggle-lang" title="Cambiar idioma ES/EN">🌐</button>
+    <button class="ctrl-btn" data-action="focus-kpsi" title="Panel de datos">🧠</button>
+    <button class="ctrl-btn" data-action="focus-search" title="Buscar en la página">🔍</button>
+  </div>
+</header>
+
+  <main id="main-content" class="layout">
+    <section class="card">
+      <h1>📱 Realidad aumentada del TTE PO1</h1>
+      <ol>
+        <li>Abre esta página desde tu <strong>teléfono o tablet</strong> compatible con AR.</li>
+        <li>Toca el botón <strong>“Ver en tu espacio”</strong> sobre el modelo.</li>
+        <li>Escanea el entorno y coloca el motor sobre una superficie plana.</li>
+      </ol>
+      <model-viewer
+        src="../assets/models/motor_porsche_tte_po1.glb"
+        alt="Motor TAG-Porsche TTE PO1 en realidad aumentada"
+        camera-controls
+        ar
+        ar-modes="webxr scene-viewer quick-look"
+        ios-src="../assets/models/motor_porsche_tte_po1.usdz"
+        style="width: 100%; height: 460px; border-radius: 1rem; overflow: hidden; background: radial-gradient(circle at top, #1f2937, #020617);">
+      </model-viewer>
+      <p class="note">
+        Si trabajas con iOS, puedes generar un archivo <code>.usdz</code> del modelo y reemplazar
+        <code>motor_porsche_tte_po1.usdz</code> en <code>assets/models/</code> para una experiencia optimizada.
+      </p>
+      <div class="cta-row">
+        <a href="../viewer3D/tte-po1-3d.html" class="cta-btn">👁️ Volver al visor 3D</a>
+        <a href="../viewerVR/tte-po1-vr.html" class="cta-btn">🥽 Probar modo VR</a>
+      </div>
+    </section>
+  </main>
+  
+<footer class="site-footer">
+  <p>Neotech EduLab SpA — Educación Inmersiva &amp; I+D 🚀</p>
+  <p>Proyecto: TAG-Porsche TTE PO1 XR Engine Lab · Motor de Fórmula 1 para uso educativo.</p>
+  <p>Contacto: Francisco Pinto &amp; Belén Acuña · neotechedulab@gmail.com</p>
+</footer>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>
