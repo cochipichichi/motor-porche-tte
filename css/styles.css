@@ -376,3 +376,10 @@ img {
     justify-content: center;
   }
 }
+
+.chart-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 720px;
+  margin: 0.5rem auto 0.8rem;
+}

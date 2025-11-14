@@ -9,6 +9,7 @@ const CORE_ASSETS = [
   './assets/img/icon-192.png',
   './assets/img/icon-512.png',
   './assets/models/motor_porsche_tte_po1.glb',
+  './assets/data/tte_po1_comparativa.csv',
   './viewer3D/tte-po1-3d.html',
   './viewerAR/tte-po1-ar.html',
   './viewerVR/tte-po1-vr.html',

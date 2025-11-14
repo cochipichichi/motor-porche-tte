@@ -9,7 +9,7 @@
   <meta name="theme-color" content="#020617" />
   <link rel="icon" type="image/png" sizes="16x16" href="assets/img/favicon-16.png" />
   <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32.png" />
-  
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
   <header class="top-bar">
@@ -38,26 +38,46 @@
     <section class="card">
       <h1>📊 Dashboard de datos · TTE PO1</h1>
       <p>
-        Esta página describe cómo usar la plantilla <code>tte_po1_comparativa.csv</code> para construir gráficos
-        en Google Sheets o en otra herramienta de análisis de datos.
+        Aquí puedes visualizar de forma inmediata la comparación entre el motor <strong>TAG-Porsche TTE PO1</strong>
+        y un motor turbo de calle usando la plantilla <code>tte_po1_comparativa.csv</code>.
       </p>
       <ol class="edu-list">
-        <li>Abre el archivo <strong>CSV</strong> en Google Sheets.</li>
-        <li>Crea un gráfico de columnas comparando potencia para TTE PO1 en carrera, clasificación y motor de calle.</li>
-        <li>Añade un segundo gráfico que compare la presión de turbo y las rpm máximas.</li>
-        <li>Discute con el curso por qué un motor pequeño puede lograr tanta potencia y qué riesgos implica.</li>
+        <li>Usa este dashboard como demostración rápida en clase.</li>
+        <li>Pide al curso que modifique el CSV (añadiendo más motores) y actualice la página.</li>
+        <li>Discute cómo cambian las barras al variar potencia, rpm o presión de turbo.</li>
       </ol>
     </section>
 
     <section class="card">
-      <h2>Ejemplo de estructura de datos</h2>
-      <pre><code>etiqueta;tipo_motor;cilindrada_L;configuracion;potencia_hp;modo;rpm_max;presion_turbo_bar;comentario
-TTE_PO1_carrera;V6 biturbo;1.5;V6 a 80° (aprox.);800;carrera;11500;3.5;Configuración típica de gran premio
-TTE_PO1_quali;V6 biturbo;1.5;V6 a 80° (aprox.);1000;clasificación;12000;4.0;Modo clasificación muy exigente
-Motor_calle_2_0T;4L turbo;2.0;4L en línea;250;uso diario;6500;1.2;Ejemplo genérico de calle</code></pre>
-      <p class="note">
-        Puedes extender esta tabla con más filas (otros motores, temporadas o configuraciones de turbo).
+      <h2>⚙️ Gráfico 1: Potencia comparada</h2>
+      <p>
+        Potencia aproximada en caballos de fuerza (hp) para cada configuración de motor.
       </p>
+      <div class="chart-wrapper">
+        <canvas id="chartPotencia" aria-label="Gráfico de potencia en hp" role="img"></canvas>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>🌀 Gráfico 2: rpm y presión de turbo</h2>
+      <p>
+        Relación entre el régimen máximo de giro y la presión de turbo estimada en cada caso.
+      </p>
+      <div class="chart-wrapper">
+        <canvas id="chartRpmTurbo" aria-label="Gráfico de rpm y presión de turbo" role="img"></canvas>
+      </div>
+      <p class="note">
+        Recuerda que estos valores son aproximados y están pensados con fines educativos; ajusta el CSV si trabajas con datos más precisos.
+      </p>
+    </section>
+
+    <section class="card">
+      <h2>📂 Archivo de datos utilizado</h2>
+      <p>
+        El dashboard lee el archivo <code>assets/data/tte_po1_comparativa.csv</code> (separado por punto y coma).
+        Puedes descargarlo, editarlo y volver a cargar la página para ver cómo cambian los gráficos.
+      </p>
+      <a href="assets/data/tte_po1_comparativa.csv" download class="cta-btn small">✅ Descargar CSV</a>
     </section>
 
   </main>
@@ -67,5 +87,97 @@ Motor_calle_2_0T;4L turbo;2.0;4L en línea;250;uso diario;6500;1.2;Ejemplo gené
   <p>Contacto: Francisco Pinto &amp; Belén Acuña · neotechedulab@gmail.com</p>
 </footer>
   <script src="js/main.js"></script>
+  <script>
+    (function() {
+      const CSV_URL = 'assets/data/tte_po1_comparativa.csv';
+
+      function parseCsv(text) {
+        const lines = text.trim().split(/\r?\n/);
+        if (!lines.length) return { headers: [], rows: [] };
+        const headers = lines[0].split(';').map(h => h.trim());
+        const rows = lines.slice(1).map(line => line.split(';').map(c => c.trim()));
+        return { headers, rows };
+      }
+
+      function buildCharts(data) {
+        const idxEtiqueta = data.headers.indexOf('etiqueta');
+        const idxPotencia = data.headers.indexOf('potencia_hp');
+        const idxRpm = data.headers.indexOf('rpm_max');
+        const idxTurbo = data.headers.indexOf('presion_turbo_bar');
+
+        const etiquetas = data.rows.map(r => r[idxEtiqueta]);
+        const potencias = data.rows.map(r => Number(r[idxPotencia] || 0));
+        const rpms = data.rows.map(r => Number(r[idxRpm] || 0));
+        const turbos = data.rows.map(r => Number(r[idxTurbo] || 0));
+
+        const ctxPot = document.getElementById('chartPotencia')?.getContext('2d');
+        const ctxRpm = document.getElementById('chartRpmTurbo')?.getContext('2d');
+        if (!ctxPot || !ctxRpm) return;
+
+        new Chart(ctxPot, {
+          type: 'bar',
+          data: {
+            labels: etiquetas,
+            datasets: [{
+              label: 'Potencia (hp aprox.)',
+              data: potencias,
+              borderWidth: 1
+            }]
+          },
+          options: {
+            responsive: true,
+            scales: {
+              y: {
+                beginAtZero: true,
+                title: { display: true, text: 'hp' }
+              }
+            }
+          }
+        });
+
+        new Chart(ctxRpm, {
+          type: 'bar',
+          data: {
+            labels: etiquetas,
+            datasets: [
+              {
+                label: 'rpm máx.',
+                data: rpms,
+                borderWidth: 1,
+                yAxisID: 'y'
+              },
+              {
+                label: 'Presión de turbo (bar)',
+                data: turbos,
+                borderWidth: 1,
+                yAxisID: 'y1'
+              }
+            ]
+          },
+          options: {
+            responsive: true,
+            scales: {
+              y: {
+                beginAtZero: true,
+                position: 'left',
+                title: { display: true, text: 'rpm' }
+              },
+              y1: {
+                beginAtZero: true,
+                position: 'right',
+                grid: { drawOnChartArea: false },
+                title: { display: true, text: 'bar' }
+              }
+            }
+          }
+        });
+      }
+
+      fetch(CSV_URL)
+        .then(r => r.text())
+        .then(text => buildCharts(parseCsv(text)))
+        .catch(err => console.error('Error al cargar CSV:', err));
+    })();
+  </script>
 </body>
 </html>
