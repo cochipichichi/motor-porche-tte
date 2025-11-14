@@ -33,26 +33,23 @@
     <button class="ctrl-btn" data-action="focus-search" title="Buscar en la página">🔍</button>
   </div>
 </header>
-  <main id="main-content" class="layout">
-
-    <section class="card">
+  <main id="main-content" class="layout">    <section class="card">
       <h1>📊 Dashboard de datos · TTE PO1</h1>
       <p>
-        Aquí puedes visualizar de forma inmediata la comparación entre el motor <strong>TAG-Porsche TTE PO1</strong>
-        y un motor turbo de calle usando la plantilla <code>tte_po1_comparativa.csv</code>.
+        Aquí puedes visualizar y <strong>editar en vivo</strong> la comparación entre el motor
+        <strong>TAG-Porsche TTE PO1</strong> y un motor turbo de calle usando la plantilla
+        <code>tte_po1_comparativa.csv</code>.
       </p>
       <ol class="edu-list">
         <li>Usa este dashboard como demostración rápida en clase.</li>
-        <li>Pide al curso que modifique el CSV (añadiendo más motores) y actualice la página.</li>
-        <li>Discute cómo cambian las barras al variar potencia, rpm o presión de turbo.</li>
+        <li>Pide al curso que modifique los valores directamente en la tabla de abajo.</li>
+        <li>Al presionar <strong>“🔄 Actualizar gráficos”</strong> verán cómo cambian las barras.</li>
       </ol>
     </section>
 
     <section class="card">
       <h2>⚙️ Gráfico 1: Potencia comparada</h2>
-      <p>
-        Potencia aproximada en caballos de fuerza (hp) para cada configuración de motor.
-      </p>
+      <p>Potencia aproximada en caballos de fuerza (hp) para cada configuración de motor.</p>
       <div class="chart-wrapper">
         <canvas id="chartPotencia" aria-label="Gráfico de potencia en hp" role="img"></canvas>
       </div>
@@ -60,27 +57,56 @@
 
     <section class="card">
       <h2>🌀 Gráfico 2: rpm y presión de turbo</h2>
-      <p>
-        Relación entre el régimen máximo de giro y la presión de turbo estimada en cada caso.
-      </p>
+      <p>Relación entre el régimen máximo de giro y la presión de turbo estimada en cada caso.</p>
       <div class="chart-wrapper">
         <canvas id="chartRpmTurbo" aria-label="Gráfico de rpm y presión de turbo" role="img"></canvas>
       </div>
       <p class="note">
-        Recuerda que estos valores son aproximados y están pensados con fines educativos; ajusta el CSV si trabajas con datos más precisos.
+        Recuerda que estos valores son aproximados y están pensados con fines educativos; ajusta la tabla
+        si trabajas con datos más precisos o con otros motores.
+      </p>
+    </section>
+
+    <section class="card">
+      <h2>✏️ Editor de datos en el navegador</h2>
+      <p>
+        Edita aquí las etiquetas, potencia, rpm y presión de turbo. Los cambios <strong>no modifican el CSV original</strong>,
+        solo viven en esta sesión y sirven para experimentar en clase.
+      </p>
+      <div class="table-scroll">
+        <table id="tablaEditor" class="data-table">
+          <thead>
+            <tr>
+              <th>Etiqueta</th>
+              <th>Potencia (hp)</th>
+              <th>rpm máx.</th>
+              <th>Presión turbo (bar)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- filas generadas por JS -->
+          </tbody>
+        </table>
+      </div>
+      <button id="btnActualizar" class="cta-btn small">🔄 Actualizar gráficos</button>
+      <p class="note">
+        Sugerencia: pide al curso que simule un “modo lluvia”, “modo ahorro” o “nuevo motor” ajustando los valores,
+        y luego comparen los resultados en los gráficos.
       </p>
     </section>
 
     <section class="card">
       <h2>📂 Archivo de datos utilizado</h2>
       <p>
-        El dashboard lee el archivo <code>assets/data/tte_po1_comparativa.csv</code> (separado por punto y coma).
-        Puedes descargarlo, editarlo y volver a cargar la página para ver cómo cambian los gráficos.
+        El dashboard lee el archivo <code>assets/data/tte_po1_comparativa.csv</code> (separado por punto y coma)
+        como punto de partida. Puedes descargarlo, editarlo y volver a cargar la página si quieres restablecer los
+        valores originales.
       </p>
-      <a href="assets/data/tte_po1_comparativa.csv" download class="cta-btn small">✅ Descargar CSV</a>
+      <a href="assets/data/tte_po1_comparativa.csv" download class="cta-btn small">✅ Descargar CSV original</a>
     </section>
 
-  </main>
+</main>
+
   <footer class="site-footer">
   <p>Neotech EduLab SpA — Educación Inmersiva &amp; I+D 🚀</p>
   <p>Proyecto: TAG-Porsche TTE PO1 XR Engine Lab · Motor de Fórmula 1 para uso educativo.</p>
@@ -90,6 +116,8 @@
   <script>
     (function() {
       const CSV_URL = 'assets/data/tte_po1_comparativa.csv';
+      let chartPotencia = null;
+      let chartRpmTurbo = null;
 
       function parseCsv(text) {
         const lines = text.trim().split(/\r?\n/);
@@ -99,25 +127,34 @@
         return { headers, rows };
       }
 
-      function buildCharts(data) {
-        const idxEtiqueta = data.headers.indexOf('etiqueta');
-        const idxPotencia = data.headers.indexOf('potencia_hp');
-        const idxRpm = data.headers.indexOf('rpm_max');
-        const idxTurbo = data.headers.indexOf('presion_turbo_bar');
+      function renderTable(labels, potencias, rpms, turbos) {
+        const tbody = document.querySelector('#tablaEditor tbody');
+        if (!tbody) return;
+        tbody.innerHTML = '';
+        for (let i = 0; i < labels.length; i++) {
+          const tr = document.createElement('tr');
+          tr.innerHTML = `
+            <td><input type="text" class="inp-etiqueta" value="${labels[i] ?? ''}"></td>
+            <td><input type="number" class="inp-potencia" value="${potencias[i] ?? 0}" step="10"></td>
+            <td><input type="number" class="inp-rpm" value="${rpms[i] ?? 0}" step="100"></td>
+            <td><input type="number" class="inp-turbo" value="${turbos[i] ?? 0}" step="0.1"></td>
+          `;
+          tbody.appendChild(tr);
+        }
+      }
 
-        const etiquetas = data.rows.map(r => r[idxEtiqueta]);
-        const potencias = data.rows.map(r => Number(r[idxPotencia] || 0));
-        const rpms = data.rows.map(r => Number(r[idxRpm] || 0));
-        const turbos = data.rows.map(r => Number(r[idxTurbo] || 0));
-
+      function buildChartsFromArrays(labels, potencias, rpms, turbos) {
         const ctxPot = document.getElementById('chartPotencia')?.getContext('2d');
         const ctxRpm = document.getElementById('chartRpmTurbo')?.getContext('2d');
         if (!ctxPot || !ctxRpm) return;
 
-        new Chart(ctxPot, {
+        if (chartPotencia) chartPotencia.destroy();
+        if (chartRpmTurbo) chartRpmTurbo.destroy();
+
+        chartPotencia = new Chart(ctxPot, {
           type: 'bar',
           data: {
-            labels: etiquetas,
+            labels: labels,
             datasets: [{
               label: 'Potencia (hp aprox.)',
               data: potencias,
@@ -135,10 +172,10 @@
           }
         });
 
-        new Chart(ctxRpm, {
+        chartRpmTurbo = new Chart(ctxRpm, {
           type: 'bar',
           data: {
-            labels: etiquetas,
+            labels: labels,
             datasets: [
               {
                 label: 'rpm máx.',
@@ -173,10 +210,54 @@
         });
       }
 
-      fetch(CSV_URL)
-        .then(r => r.text())
-        .then(text => buildCharts(parseCsv(text)))
-        .catch(err => console.error('Error al cargar CSV:', err));
+      function buildFromData(data) {
+        const idxEtiqueta = data.headers.indexOf('etiqueta');
+        const idxPotencia = data.headers.indexOf('potencia_hp');
+        const idxRpm = data.headers.indexOf('rpm_max');
+        const idxTurbo = data.headers.indexOf('presion_turbo_bar');
+
+        const etiquetas = data.rows.map(r => r[idxEtiqueta]);
+        const potencias = data.rows.map(r => Number(r[idxPotencia] || 0));
+        const rpms = data.rows.map(r => Number(r[idxRpm] || 0));
+        const turbos = data.rows.map(r => Number(r[idxTurbo] || 0));
+
+        renderTable(etiquetas, potencias, rpms, turbos);
+        buildChartsFromArrays(etiquetas, potencias, rpms, turbos);
+      }
+
+      function readTableAndUpdate() {
+        const tbody = document.querySelector('#tablaEditor tbody');
+        if (!tbody) return;
+        const etiquetas = [];
+        const potencias = [];
+        const rpms = [];
+        const turbos = [];
+        tbody.querySelectorAll('tr').forEach(tr => {
+          const e = tr.querySelector('.inp-etiqueta');
+          const p = tr.querySelector('.inp-potencia');
+          const r = tr.querySelector('.inp-rpm');
+          const t = tr.querySelector('.inp-turbo');
+          etiquetas.push(e ? e.value : '');
+          potencias.push(p ? Number(p.value || 0) : 0);
+          rpms.push(r ? Number(r.value || 0) : 0);
+          turbos.push(t ? Number(t.value || 0) : 0);
+        });
+        buildChartsFromArrays(etiquetas, potencias, rpms, turbos);
+      }
+
+      document.addEventListener('DOMContentLoaded', function() {
+        fetch(CSV_URL)
+          .then(r => r.text())
+          .then(text => buildFromData(parseCsv(text)))
+          .catch(err => console.error('Error al cargar CSV:', err));
+
+        const btn = document.getElementById('btnActualizar');
+        if (btn) {
+          btn.addEventListener('click', function() {
+            readTableAndUpdate();
+          });
+        }
+      });
     })();
   </script>
 </body>

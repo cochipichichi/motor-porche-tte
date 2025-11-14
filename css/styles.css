@@ -383,3 +383,33 @@ img {
   max-width: 720px;
   margin: 0.5rem auto 0.8rem;
 }
+
+.table-scroll {
+  width: 100%;
+  overflow-x: auto;
+  margin: 0.5rem 0;
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.86rem;
+}
+.data-table th,
+.data-table td {
+  border: 1px solid rgba(148, 163, 184, 0.45);
+  padding: 0.35rem 0.5rem;
+}
+.data-table th {
+  background: rgba(15, 23, 42, 0.98);
+}
+.data-table input {
+  width: 100%;
+  border: none;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+}
+.data-table input:focus {
+  outline: 1px solid rgba(56, 189, 248, 0.9);
+}
