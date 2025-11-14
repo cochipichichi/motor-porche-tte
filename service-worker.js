@@ -11,10 +11,7 @@ const CORE_ASSETS = [
   './assets/models/motor_porsche_tte_po1.glb',
   './viewer3D/tte-po1-3d.html',
   './viewerAR/tte-po1-ar.html',
-  './viewerVR/tte-po1-vr.html',
-  './dashboard.html',
-  './docente.html',
-  './comparador.html'
+  './viewerVR/tte-po1-vr.html'
 ];
 
 self.addEventListener('install', (event) => {
