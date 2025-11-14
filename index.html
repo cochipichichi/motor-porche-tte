@@ -54,8 +54,8 @@
         </div>
       </div>
       <figure class="hero-image">
-        <img src="assets/img/porsche_tte_po1_hero.png" alt="Representación gráfica del motor TAG-Porsche TTE PO1 V6 biturbo" />
-        <figcaption>Visual XR para el motor TAG-Porsche TTE PO1 · Proyecto educativo Neotech EduLab.</figcaption>
+        <img src="assets/img/tte_po1_photo.png" alt="Representación gráfica del motor TAG-Porsche TTE PO1 V6 biturbo" />
+        <figcaption>Render del motor TAG-Porsche TTE PO1 utilizado en este laboratorio XR.</figcaption>
       </figure>
     </section>
 
@@ -129,6 +129,19 @@
       </ol>
     </section>
 
+    <section id="glosario" class="card">
+      <h2>📚 Glosario rápido</h2>
+      <p>Algunos términos clave para trabajar con motores turbo de Fórmula 1:</p>
+      <ul class="spec-list">
+        <li><strong>Boost:</strong> Aumento de presión generado por el turbocompresor respecto a la presión atmosférica.</li>
+        <li><strong>Mapa de motor:</strong> Conjunto de parámetros (inyección, avance, presión de turbo) ajustados para un objetivo concreto.</li>
+        <li><strong>Detonación:</strong> Combustión no controlada que puede dañar pistones y culata, frecuente cuando se abusa del turbo.</li>
+        <li><strong>AFR:</strong> Relación aire/combustible; mezclas muy ricas o muy pobres afectan potencia y seguridad del motor.</li>
+        <li><strong>Curva de potencia:</strong> Gráfico que muestra cómo cambia la potencia en función de las rpm.</li>
+      </ul>
+    </section>
+
+
     <section class="card">
       <h2>✅ Flujo de trabajo sugerido</h2>
       <div class="workflow">
@@ -152,6 +165,24 @@
         <li>Compara el TTE PO1 con un motor turbo de calle: ¿en qué se parecen y en qué se diferencian?</li>
       </ol>
     </section>
+
+
+    <section id="quiz-envio" class="card">
+      <h2>📩 Enviar resultados del quiz por correo</h2>
+      <p>
+        Este formulario abre el cliente de correo del dispositivo y prepara un mensaje con las respuestas.
+        Úsalo como demo rápida (en producción puedes reemplazar el correo o usar un backend propio).
+      </p>
+      <form action="mailto:neotechedulab@gmail.com?subject=Quiz%20TTE%20PO1" method="post" enctype="text/plain">
+        <label>Nombre del estudiante:<br><input type="text" name="nombre" required></label><br><br>
+        <label>Respuesta 1:<br><textarea name="respuesta1" rows="2"></textarea></label><br><br>
+        <label>Respuesta 2:<br><textarea name="respuesta2" rows="2"></textarea></label><br><br>
+        <label>Respuesta 3:<br><textarea name="respuesta3" rows="2"></textarea></label><br><br>
+        <button type="submit" class="cta-btn small">🧪 Enviar respuestas</button>
+      </form>
+      <p class="note">En algunos navegadores puede solicitar confirmación antes de abrir el correo.</p>
+    </section>
+
 
     <section id="ticket-salida" class="card">
       <h2>🎟️ Ticket de salida</h2>
@@ -178,6 +209,17 @@
 
 
     </section>
+
+    <section class="card">
+      <h2>🧭 Otras vistas del laboratorio</h2>
+      <p>Accesos directos a vistas complementarias del motor TTE PO1:</p>
+      <div class="cta-row">
+        <a href="dashboard.html" class="cta-btn small">📊 Dashboard de datos</a>
+        <a href="comparador.html" class="cta-btn small">⚖️ Comparador F1 vs calle</a>
+        <a href="docente.html" class="cta-btn small">🧑‍🏫 Vista docente</a>
+      </div>
+    </section>
+
 
     <section class="card search-block">
       <h2>🔍 Buscador dentro de la página</h2>
